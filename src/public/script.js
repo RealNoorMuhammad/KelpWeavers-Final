@@ -370,3 +370,76 @@ document.addEventListener("keydown", (e) => {
     closeWeaveModal();
   }
 });
+
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+function initScrollReveal() {
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) return;
+
+  const targets = Array.from(
+    document.querySelectorAll(
+      ".gallery__head, .nft, .waitlist__intro, .tweets__head, .tweet, .tweets__cta, .site-footer__inner"
+    )
+  );
+  if (!targets.length) return;
+
+  document.documentElement.classList.add("js-reveal");
+  targets.forEach((el) => el.classList.add("reveal"));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const el = entry.target;
+        const siblings = el.parentElement
+          ? Array.from(el.parentElement.children).filter((node) =>
+              node.classList.contains("reveal")
+            )
+          : [];
+        const order = Math.max(siblings.indexOf(el), 0);
+
+        el.style.transitionDelay = `${Math.min(order, 5) * 90}ms`;
+        el.classList.add("reveal--in");
+        observer.unobserve(el);
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+}
+
+function initHeroParallax() {
+  if (prefersReducedMotion) return;
+
+  const media = document.querySelector(".hero__media");
+  const hero = document.querySelector(".hero");
+  if (!media || !hero) return;
+
+  let pending = false;
+
+  const update = () => {
+    pending = false;
+    const heroHeight = hero.offsetHeight || window.innerHeight;
+    const progress = Math.min(Math.max(window.scrollY / heroHeight, 0), 1);
+    media.style.transform = `translate3d(0, ${progress * 6}%, 0)`;
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(update);
+    },
+    { passive: true }
+  );
+
+  update();
+}
+
+initScrollReveal();
+initHeroParallax();
