@@ -2043,7 +2043,8 @@ a:hover {
 
 /* —— Wide desktop boarding pass —— */
 @media (min-width: 900px) {
-  .panel--wide {
+  .panel--wide,
+  .container--pass {
     width: min(1040px, calc(100% - 3rem));
   }
 

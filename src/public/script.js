@@ -197,6 +197,10 @@ function showSuccessData(userData, isLogin) {
   const authTabs = document.getElementById("auth-tabs");
   const flowReg = document.getElementById("flow-register");
   const flowLog = document.getElementById("flow-login");
+  const mainContainer = document.getElementById("main-container");
+
+  // the pass is a two-column layout and needs more room than the form steps
+  if (mainContainer) mainContainer.classList.add("container--pass");
 
   if (authTabs) authTabs.classList.add("hidden");
   if (flowReg) flowReg.classList.add("hidden");
