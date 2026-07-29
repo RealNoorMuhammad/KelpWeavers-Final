@@ -1,6 +1,5 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import "dotenv/config";
-import ws from "ws";
 import { IUser } from "../types/user";
 
 export type DbUser = {
@@ -12,10 +11,6 @@ export type DbUser = {
   score: number;
   created_at: string;
 };
-
-type ClientOptions = NonNullable<Parameters<typeof createClient>[2]>;
-type RealtimeOptions = NonNullable<ClientOptions["realtime"]>;
-type RealtimeTransport = NonNullable<RealtimeOptions["transport"]>;
 
 let client: SupabaseClient | null = null;
 
@@ -31,18 +26,11 @@ export function getSupabase(): SupabaseClient {
     );
   }
 
-  // supabase-js expects an explicit transport on Node < 22, which has no native WebSocket
-  const realtime: RealtimeOptions | undefined =
-    typeof globalThis.WebSocket === "undefined"
-      ? { transport: ws as unknown as RealtimeTransport }
-      : undefined;
-
   client = createClient(url, key, {
     auth: {
       persistSession: false,
       autoRefreshToken: false,
     },
-    ...(realtime ? { realtime } : {}),
   });
 
   return client;
