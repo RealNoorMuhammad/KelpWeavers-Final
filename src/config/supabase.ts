@@ -13,6 +13,10 @@ export type DbUser = {
   created_at: string;
 };
 
+type ClientOptions = NonNullable<Parameters<typeof createClient>[2]>;
+type RealtimeOptions = NonNullable<ClientOptions["realtime"]>;
+type RealtimeTransport = NonNullable<RealtimeOptions["transport"]>;
+
 let client: SupabaseClient | null = null;
 
 export function getSupabase(): SupabaseClient {
@@ -27,15 +31,18 @@ export function getSupabase(): SupabaseClient {
     );
   }
 
+  // supabase-js expects an explicit transport on Node < 22, which has no native WebSocket
+  const realtime: RealtimeOptions | undefined =
+    typeof globalThis.WebSocket === "undefined"
+      ? { transport: ws as unknown as RealtimeTransport }
+      : undefined;
+
   client = createClient(url, key, {
     auth: {
       persistSession: false,
       autoRefreshToken: false,
     },
-    // Node < 22 (e.g. older Vercel runtimes) has no native WebSocket
-    realtime: {
-      transport: ws as unknown as typeof WebSocket,
-    },
+    ...(realtime ? { realtime } : {}),
   });
 
   return client;
