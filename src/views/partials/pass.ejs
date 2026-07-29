@@ -1,0 +1,87 @@
+<div class="card card--pass<%= typeof extraClass !== 'undefined' && extraClass ? ' ' + extraClass : '' %>" id="step-5">
+  <div class="pass-aura" aria-hidden="true"></div>
+
+  <div class="pass-side">
+    <div class="pass-head">
+      <span class="pass-seal" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12.6 9.4 18 20 6.6" />
+        </svg>
+      </span>
+      <p class="pass-eyebrow">Boarding confirmed</p>
+      <h2>Welcome aboard</h2>
+      <p class="subtitle">Keep your paddle ready. We'll signal when the Eternal Stream opens.</p>
+    </div>
+
+    <div class="tabs">
+      <button type="button" class="tab-btn active" id="tab-btn-video" onclick="switchTab('video')">The Raft</button>
+      <button type="button" class="tab-btn" id="tab-btn-pass" onclick="switchTab('pass')">Your Pass</button>
+    </div>
+
+    <div class="pass-stub" aria-hidden="true">
+      <div class="pass-barcode"></div>
+      <p class="pass-stub__text">KelpWeavers &middot; Raft Access &middot; 8888</p>
+    </div>
+  </div>
+
+  <div class="pass-main">
+    <div id="tab-video" class="tab-content active">
+      <div class="raft-gallery">
+        <img src="/assets/d1.jpg" alt="KelpWeaver archer">
+        <img src="/assets/d2.jpg" alt="KelpWeaver fishing">
+        <img src="/assets/d3.jpg" alt="KelpWeaver explorer">
+      </div>
+      <p class="raft-note">Your crew is being woven. Open <strong>Your Pass</strong> to grab your referral code.</p>
+    </div>
+
+    <div id="tab-pass" class="tab-content hidden">
+      <div class="boarding">
+        <div class="boarding__shine" aria-hidden="true"></div>
+
+        <header class="boarding__top">
+          <img src="/assets/logo.jpg" alt="" class="boarding__mark">
+          <div class="boarding__id">
+            <p class="boarding__brand">KelpWeavers</p>
+            <p class="boarding__kind">Raft Access Pass</p>
+          </div>
+          <span class="boarding__chip">
+            <span class="boarding__dot"></span>Aboard
+          </span>
+        </header>
+
+        <div class="boarding__code">
+          <p class="boarding__label">Your referral code</p>
+          <span class="referral-row">
+            <span id="disp-referral" class="boarding__value"><%= typeof referral !== 'undefined' ? referral : '' %></span>
+            <button type="button" id="copy-btn" class="copy-btn" onclick="copyReferral()">Copy</button>
+          </span>
+          <p class="boarding__hint">Share it — every Weaver who joins lifts your score.</p>
+        </div>
+
+        <div class="boarding__stats">
+          <div class="stat">
+            <span class="stat__label">Referral score</span>
+            <strong id="disp-score" class="stat__value score-accent"><%= typeof score !== 'undefined' ? score : '' %></strong>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Supply</span>
+            <strong class="stat__value">8888</strong>
+          </div>
+        </div>
+
+        <div class="boarding__rip" aria-hidden="true"></div>
+
+        <div class="pass-details">
+          <p><strong>Email</strong><span id="disp-email"><%= typeof email !== 'undefined' ? email : '' %></span></p>
+          <p><strong>Wallet</strong><span id="disp-wallet" class="mono"><%= typeof walletAddress !== 'undefined' ? walletAddress : '' %></span></p>
+          <p class="pass-details__wide"><strong>Tweet</strong><span id="disp-tweet"><%= typeof xUsername !== 'undefined' ? xUsername : '' %></span></p>
+        </div>
+      </div>
+
+      <button type="button" class="social-share-btn" onclick="shareToX()">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.227-8.451L1.99 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        Share on X
+      </button>
+    </div>
+  </div>
+</div>

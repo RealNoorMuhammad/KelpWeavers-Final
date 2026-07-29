@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KelpWeavers | Join the Raft</title>
+  <meta name="description" content="8888 Clever Kelpweavers weaving joy into the Eternal Stream. Launching on Robinhood Chain.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@kelpWeaversNft">
+  <meta name="twitter:title" content="KelpWeavers — Join the Raft">
+  <meta name="twitter:description" content="8888 Clever Kelpweavers. Weaving joy into the Eternal Stream.">
+  <meta name="twitter:image" content="/assets/hero-bg.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
+</head>
+<body>
+  <div id="leaf-field" aria-hidden="true"></div>
+  <button type="button" id="scoreboard" aria-haspopup="dialog" aria-controls="weave-modal">
+    Weave <span id="score">0</span>
+  </button>
+
+  <div id="weave-modal" class="weave-modal hidden" role="dialog" aria-modal="true" aria-labelledby="weave-modal-title">
+    <div class="weave-modal__backdrop" data-close-weave></div>
+    <div class="weave-modal__panel">
+      <p class="weave-modal__eyebrow">Weave</p>
+      <h2 id="weave-modal-title" class="weave-modal__title">Coming soon</h2>
+      <p class="weave-modal__copy">Something's cooking in the kelp. Stay close.</p>
+      <button type="button" class="btn btn--primary weave-modal__btn" data-close-weave>Got it</button>
+    </div>
+  </div>
+
+  <% if (valid) { %>
+  <main class="page page--pass">
+    <section class="hero hero--compact hero--pass">
+      <div class="hero__media" aria-hidden="true">
+        <img src="/assets/hero-bg.jpg" alt="" class="hero__banner">
+        <div class="hero__veil"></div>
+      </div>
+      <div class="hero__content">
+        <img src="/assets/logo.jpg" alt="KelpWeavers" class="brand-mark brand-mark--sm">
+        <h1 class="brand-name">KelpWeavers</h1>
+        <span class="live-chip"><span class="live-chip__dot"></span>Access granted</span>
+        <p class="hero__line">You're in the Raft.</p>
+      </div>
+    </section>
+
+    <div class="pass-divider" aria-hidden="true">
+      <span class="pass-divider__line"></span>
+      <span class="pass-divider__gem"></span>
+      <span class="pass-divider__line"></span>
+    </div>
+
+    <section class="panel panel--wide" id="main-container">
+      <%- include('partials/pass', {
+        email: email,
+        walletAddress: walletAddress,
+        referral: referral,
+        xUsername: xUsername,
+        score: score
+      }) %>
+    </section>
+  </main>
+
+  <% } else { %>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero__media" aria-hidden="true">
+        <img src="/assets/hero-bg.jpg" alt="" class="hero__banner">
+        <div class="hero__veil"></div>
+      </div>
+      <div class="hero__content">
+        <img src="/assets/logo.jpg" alt="" class="brand-mark">
+        <h1 class="brand-name">KelpWeavers</h1>
+        <p class="hero__headline">Weaving joy into the Eternal Stream</p>
+        <p class="hero__support">8888 clever otters. Launching on Robinhood Chain.</p>
+        <div class="hero__cta">
+          <a href="#waitlist" class="btn btn--primary" onclick="document.getElementById('step-0')?.scrollIntoView({behavior:'smooth'})">Join the Raft</a>
+          <a href="https://x.com/kelpWeaversNft" target="_blank" rel="noopener" class="btn btn--ghost">Follow on X</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="marquee__group">
+          <img src="/assets/logo.jpg" alt="">
+          <span>KelpWeavers</span>
+          <img src="/assets/robinhood.jpg" alt="">
+          <span>Robinhood Chain</span>
+          <img src="/assets/logo.jpg" alt="">
+          <span>Join the Raft</span>
+          <img src="/assets/robinhood.jpg" alt="">
+          <span>8888 Otters</span>
+        </div>
+        <div class="marquee__group">
+          <img src="/assets/logo.jpg" alt="">
+          <span>KelpWeavers</span>
+          <img src="/assets/robinhood.jpg" alt="">
+          <span>Robinhood Chain</span>
+          <img src="/assets/logo.jpg" alt="">
+          <span>Join the Raft</span>
+          <img src="/assets/robinhood.jpg" alt="">
+          <span>8888 Otters</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="gallery" aria-label="KelpWeavers collection">
+      <div class="gallery__head">
+        <div class="chain-row chain-row--center">
+          <img src="/assets/robinhood.jpg" alt="Robinhood" class="chain-logo">
+          <span>Launching on Robinhood Chain</span>
+        </div>
+        <h2>Meet the Weavers</h2>
+        <p>Scouts, archers, and river riders — each one cutting a path through the kelp.</p>
+      </div>
+      <div class="gallery__track">
+        <figure class="nft">
+          <img src="/assets/d1.jpg" alt="KelpWeaver with bow" loading="lazy">
+          <figcaption>The Archer</figcaption>
+        </figure>
+        <figure class="nft">
+          <img src="/assets/d2.jpg" alt="KelpWeaver fishing" loading="lazy">
+          <figcaption>The Riverrunner</figcaption>
+        </figure>
+        <figure class="nft">
+          <img src="/assets/d3.jpg" alt="KelpWeaver on the peak" loading="lazy">
+          <figcaption>The Peakclaimer</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="waitlist" id="waitlist">
+      <div class="waitlist__intro">
+        <h2>Secure your spot</h2>
+        <p>Drop your details, spread the weave, and lock into the Raft.</p>
+      </div>
+
+      <div class="container" id="main-container">
+        <div id="flow-register">
+          <div class="card" id="step-0">
+            <h2>Apply for a spot</h2>
+            <p class="subtitle">The stream is rising. The clever ones move first.</p>
+            <ul class="meta-list">
+              <li><span>Supply</span><strong>8888</strong></li>
+              <li><span>Chain</span><strong>Robinhood</strong></li>
+              <li><span>Mint</span><strong>TBA</strong></li>
+            </ul>
+            <button type="button" onclick="nextStep(0)">Enter Waitlist</button>
+          </div>
+
+          <div class="card hidden" id="step-1">
+            <h2>Drop your line</h2>
+            <p class="subtitle">Where should we send your Raft invite?</p>
+            <div class="input-group">
+              <input type="email" id="email" placeholder="you@kelp.stream" autocomplete="email">
+            </div>
+            <button type="button" onclick="nextStep(1)">Continue</button>
+            <button type="button" class="back-btn" onclick="prevStep(1)">Back</button>
+            <p class="error" id="error-1">That email doesn't look quite right.</p>
+          </div>
+
+          <div class="card hidden" id="step-2">
+            <h2>Secure the bag</h2>
+            <p class="subtitle">Drop your wallet address to qualify.</p>
+            <div class="input-group">
+              <input type="text" id="wallet" placeholder="0x..." spellcheck="false" autocomplete="off">
+            </div>
+            <button type="button" onclick="nextStep(2)">Continue</button>
+            <button type="button" class="back-btn" onclick="prevStep(2)">Back</button>
+            <p class="error" id="error-2">Please enter a valid wallet address.</p>
+          </div>
+
+          <div class="card hidden" id="step-3">
+            <h2>Who invited you?</h2>
+            <p class="subtitle">Got a referral code from a fellow Weaver?</p>
+            <div class="input-group">
+              <input type="text" id="referral" placeholder="Referral code (optional)" value="<%= typeof refCode !== 'undefined' ? refCode : '' %>">
+            </div>
+            <button type="button" onclick="nextStep(3)">Continue</button>
+            <button type="button" class="back-btn" onclick="prevStep(3)">Back</button>
+          </div>
+
+          <div class="card hidden" id="step-4">
+            <h2>Spread the weave</h2>
+            <p class="subtitle">Follow, like, quote the post, and tag a fren to unlock your spot.</p>
+
+            <a href="https://x.com/intent/follow?screen_name=kelpWeaversNft" target="_blank" rel="noopener" class="social-link" id="btn-follow" onclick="markTask('follow')">1. Follow @kelpWeaversNft</a>
+            <a href="https://x.com/kelpWeaversNft" target="_blank" rel="noopener" class="social-link" id="btn-like" onclick="markTask('like')">2. Like a post</a>
+            <a href="https://x.com/kelpWeaversNft" target="_blank" rel="noopener" class="social-link" id="btn-quote" onclick="markTask('quote')">3. Quote the post</a>
+            <a href="https://x.com/kelpWeaversNft" target="_blank" rel="noopener" class="social-link" id="btn-tag" onclick="markTask('tag')">4. Tag a fren</a>
+
+            <div class="input-group" style="margin-top: 1.25rem;">
+              <input type="url" id="tweetLink" placeholder="Paste your quote tweet link">
+            </div>
+
+            <button type="button" id="submit-btn" onclick="nextStep(4)">Verify &amp; Join</button>
+            <button type="button" class="back-btn" onclick="prevStep(4)">Back</button>
+            <p class="error" id="error-4">Please enter a valid link and complete all social tasks.</p>
+          </div>
+        </div>
+
+        <div id="flow-login" class="hidden">
+          <div class="card">
+            <h2>Welcome back</h2>
+            <p class="subtitle">Enter your wallet to check your Raft status.</p>
+            <div class="input-group">
+              <input type="text" id="login-wallet" placeholder="0x..." spellcheck="false" autocomplete="off">
+            </div>
+            <button type="button" id="login-btn" onclick="processLogin()">Access Pass</button>
+            <p class="error" id="error-login">Wallet not found. Please register first.</p>
+          </div>
+        </div>
+
+        <%- include('partials/pass', { extraClass: 'hidden' }) %>
+      </div>
+
+      <div class="auth-tabs" id="auth-tabs">
+        <button type="button" class="auth-tab active" id="tab-reg" onclick="switchAuth('register')">Register</button>
+        <button type="button" class="auth-tab" id="tab-log" onclick="switchAuth('login')">Login</button>
+      </div>
+    </section>
+
+    <section class="tweets" id="from-x" aria-label="Latest from KelpWeavers on X">
+      <div class="tweets__head">
+        <p class="tweets__eyebrow">From the stream</p>
+        <h2>Latest from the Raft</h2>
+        <p>Real drops from <a href="https://x.com/kelpWeaversNft" target="_blank" rel="noopener">@kelpWeaversNft</a> — join the weave.</p>
+      </div>
+
+      <div class="tweets__rail">
+        <article class="tweet">
+          <a class="tweet__link" href="https://x.com/kelpWeaversNft/status/2080340361566638130" target="_blank" rel="noopener">
+            <header class="tweet__meta">
+              <img src="/assets/logo.jpg" alt="" class="tweet__avatar" width="44" height="44">
+              <div>
+                <strong>KelpWeavers</strong>
+                <span>@kelpWeaversNft · Jul 23</span>
+              </div>
+              <svg class="tweet__x" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.227-8.451L1.99 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+            </header>
+            <p class="tweet__body">Mission complete. Logo in the sky. Feet up. Even the boldest Kelpweavers know it’s almost time to vibe. Like, RT &amp; Comment</p>
+            <div class="tweet__media">
+              <img src="https://pbs.twimg.com/media/HN7aiBVXMAAbwio?format=jpg&amp;name=small" alt="KelpWeaver with logo in the sky" loading="lazy">
+            </div>
+            <footer class="tweet__stats">
+              <span>5 replies</span>
+              <span>7 reposts</span>
+              <span>12 likes</span>
+            </footer>
+          </a>
+        </article>
+
+        <article class="tweet">
+          <a class="tweet__link" href="https://x.com/kelpWeaversNft/status/2079897580285153485" target="_blank" rel="noopener">
+            <header class="tweet__meta">
+              <img src="/assets/logo.jpg" alt="" class="tweet__avatar" width="44" height="44">
+              <div>
+                <strong>KelpWeavers</strong>
+                <span>@kelpWeaversNft · Jul 22</span>
+              </div>
+              <svg class="tweet__x" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.227-8.451L1.99 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+            </header>
+            <p class="tweet__body">Deep in the forest, one Kelpweaver stays on the move. New paths. New heights. Same unbreakable spirit. We're taking note of those exploring with us!</p>
+            <div class="tweet__media">
+              <img src="https://pbs.twimg.com/media/HN1H00NXEAAXF6C?format=jpg&amp;name=small" alt="Kelpweaver exploring the forest" loading="lazy">
+            </div>
+            <footer class="tweet__stats">
+              <span>11 replies</span>
+              <span>4 reposts</span>
+              <span>25 likes</span>
+            </footer>
+          </a>
+        </article>
+
+        <article class="tweet">
+          <a class="tweet__link" href="https://x.com/kelpWeaversNft/status/2079565479232856372" target="_blank" rel="noopener">
+            <header class="tweet__meta">
+              <img src="/assets/logo.jpg" alt="" class="tweet__avatar" width="44" height="44">
+              <div>
+                <strong>KelpWeavers</strong>
+                <span>@kelpWeaversNft · Jul 21</span>
+              </div>
+              <svg class="tweet__x" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.227-8.451L1.99 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+            </header>
+            <p class="tweet__body">Squid Game rules. Robinhood logo. One careful carve. One wrong move and it’s over. A Kelpweaver doesn’t flinch. They extract the win. Drop a leaf if you’ve got steady hands</p>
+            <div class="tweet__media">
+              <img src="https://pbs.twimg.com/media/HNwZyBTWEAAcYHY?format=jpg&amp;name=small" alt="Kelpweaver carving the Robinhood logo" loading="lazy">
+            </div>
+            <footer class="tweet__stats">
+              <span>16 replies</span>
+              <span>28 likes</span>
+              <span>521 quotes</span>
+            </footer>
+          </a>
+        </article>
+
+        <article class="tweet">
+          <a class="tweet__link" href="https://x.com/kelpWeaversNft/status/2079175216815653090" target="_blank" rel="noopener">
+            <header class="tweet__meta">
+              <img src="/assets/logo.jpg" alt="" class="tweet__avatar" width="44" height="44">
+              <div>
+                <strong>KelpWeavers</strong>
+                <span>@kelpWeaversNft · Jul 20</span>
+              </div>
+              <svg class="tweet__x" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.227-8.451L1.99 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+            </header>
+            <p class="tweet__body">Robinhood energy at the top of the world. Taking the peak from the untouchables and sharing the view with the Raft. Drop a leaf if you’re here for the real gains</p>
+            <div class="tweet__media">
+              <img src="https://pbs.twimg.com/media/HNq21oCWAAAjtGh?format=jpg&amp;name=small" alt="Kelpweaver at the mountain peak" loading="lazy">
+            </div>
+            <footer class="tweet__stats">
+              <span>12 replies</span>
+              <span>2 reposts</span>
+              <span>22 likes</span>
+            </footer>
+          </a>
+        </article>
+      </div>
+
+      <div class="tweets__cta">
+        <a href="https://x.com/kelpWeaversNft" target="_blank" rel="noopener" class="btn btn--primary">Follow @kelpWeaversNft</a>
+      </div>
+    </section>
+  </main>
+
+  <% } %>
+
+  <footer class="site-footer">
+    <div class="site-footer__glow" aria-hidden="true"></div>
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <img src="/assets/logo.jpg" alt="KelpWeavers" class="brand-mark brand-mark--sm">
+        <div>
+          <p class="site-footer__name">KelpWeavers</p>
+          <p class="site-footer__tag">Weaving joy into the Eternal Stream</p>
+        </div>
+      </div>
+
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="#waitlist">Join the Raft</a>
+        <a href="#from-x">From X</a>
+        <a href="https://x.com/kelpWeaversNft" target="_blank" rel="noopener">@kelpWeaversNft</a>
+        <a href="https://x.com/intent/follow?screen_name=kelpWeaversNft" target="_blank" rel="noopener">Follow</a>
+      </nav>
+
+      <div class="site-footer__chain">
+        <img src="/assets/robinhood.jpg" alt="" class="chain-logo">
+        <span>8888 on Robinhood Chain</span>
+      </div>
+    </div>
+    <div class="site-footer__bar">
+      <p>&copy; 2026 KelpWeavers. All rights reserved.</p>
+      <a class="site-footer__x" href="https://x.com/kelpWeaversNft" target="_blank" rel="noopener" aria-label="KelpWeavers on X">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.227-8.451L1.99 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
