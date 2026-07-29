@@ -1,3 +1,104 @@
+(function initPreloader() {
+  const preloader = document.getElementById("preloader");
+  if (!preloader) return;
+
+  const fill = document.getElementById("preloader-fill");
+  const pct = document.getElementById("preloader-pct");
+  const status = document.getElementById("preloader-status");
+
+  const phrases = [
+    "Gathering kelp",
+    "Weaving the raft",
+    "Waking the otters",
+    "Charting the Eternal Stream",
+  ];
+
+  const MIN_VISIBLE = 1300;
+  const MAX_VISIBLE = 4500;
+  const startedAt = performance.now();
+
+  let progress = 0;
+  let loaded = false;
+  let finished = false;
+  let sealed = false;
+  let phraseIndex = 0;
+  let lastFrame = startedAt;
+
+  const rotator = setInterval(() => {
+    if (sealed || !status) return;
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+    status.classList.add("is-swapping");
+    setTimeout(() => {
+      if (sealed) return;
+      status.innerText = phrases[phraseIndex];
+      status.classList.remove("is-swapping");
+    }, 220);
+  }, 950);
+
+  function dismiss() {
+    if (finished) return;
+    finished = true;
+    clearInterval(rotator);
+
+    preloader.classList.add("is-done");
+    document.body.classList.remove("is-loading");
+    setTimeout(() => preloader.remove(), 950);
+  }
+
+  function tick(now) {
+    if (finished) return;
+
+    // frame-rate independent easing, so the bar takes the same wall-clock
+    // time on a 30hz phone and a 144hz monitor. the first callback can carry a
+    // timestamp from before this script ran, hence the lower clamp
+    const frames = Math.min(Math.max((now - lastFrame) / 16.7, 0), 8);
+    lastFrame = now;
+
+    const target = loaded ? 100 : 90;
+    const rate = loaded ? 0.18 : 0.035;
+    progress += (target - progress) * (1 - Math.pow(1 - rate, frames));
+
+    if (progress > 99.4) progress = 100;
+    if (fill) fill.style.width = `${progress}%`;
+    if (pct) pct.innerText = Math.round(progress);
+
+    if (progress === 100) {
+      sealed = true;
+      clearInterval(rotator);
+      if (status) {
+        status.classList.remove("is-swapping");
+        status.innerText = "Welcome aboard";
+      }
+      setTimeout(dismiss, 380);
+      return;
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  function markLoaded() {
+    const remaining = MIN_VISIBLE - (performance.now() - startedAt);
+    setTimeout(() => {
+      loaded = true;
+    }, Math.max(remaining, 0));
+  }
+
+  if (document.readyState === "complete") {
+    markLoaded();
+  } else {
+    window.addEventListener("load", markLoaded, { once: true });
+  }
+
+  // never hold the page hostage to a slow asset, or to a tab that was
+  // backgrounded long enough for requestAnimationFrame to stop firing
+  setTimeout(() => {
+    loaded = true;
+  }, MAX_VISIBLE);
+  setTimeout(dismiss, MAX_VISIBLE + 1500);
+
+  requestAnimationFrame(tick);
+})();
+
 let totalScore = 0;
 const scoreDisplay = document.getElementById("score");
 

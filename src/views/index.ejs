@@ -16,7 +16,43 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
 </head>
-<body>
+<body class="is-loading">
+  <div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading KelpWeavers">
+    <div class="preloader__caustics" aria-hidden="true"></div>
+    <div class="preloader__leaves" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="preloader__inner">
+      <div class="preloader__emblem">
+        <span class="preloader__ring" aria-hidden="true"></span>
+        <span class="preloader__ring preloader__ring--alt" aria-hidden="true"></span>
+        <span class="preloader__orbit" aria-hidden="true"><i></i></span>
+        <img src="/assets/logo.jpg" alt="" class="preloader__mark" width="88" height="88">
+      </div>
+
+      <p class="preloader__word" aria-hidden="true">
+        <span style="--i:0">K</span><span style="--i:1">e</span><span style="--i:2">l</span><span style="--i:3">p</span><span style="--i:4">W</span><span style="--i:5">e</span><span style="--i:6">a</span><span style="--i:7">v</span><span style="--i:8">e</span><span style="--i:9">r</span><span style="--i:10">s</span>
+      </p>
+
+      <p class="preloader__tag" id="preloader-status">Gathering kelp</p>
+
+      <div class="preloader__bar" aria-hidden="true">
+        <span class="preloader__fill" id="preloader-fill"></span>
+      </div>
+
+      <p class="preloader__pct" aria-hidden="true"><span id="preloader-pct">0</span>%</p>
+    </div>
+
+    <p class="preloader__note" aria-hidden="true">8888 Weavers &middot; Robinhood Chain</p>
+  </div>
+  <noscript>
+    <style>
+      .preloader { display: none !important; }
+      body.is-loading { overflow: visible; }
+    </style>
+  </noscript>
+
   <div id="leaf-field" aria-hidden="true"></div>
   <button type="button" id="scoreboard" aria-haspopup="dialog" aria-controls="weave-modal">
     Weave <span id="score">0</span>
